@@ -1,0 +1,252 @@
+<mxfile host="app.diagrams.net" modified="2026-04-07T00:00:00.000Z" agent="Qoder" version="24.0.0" type="device">
+  <diagram id="architecture" name="Architecture">
+    <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 标题 -->
+        <mxCell id="title" value="Python MCP Notebook - 系统架构图" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="760" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- 客户端层 -->
+        <mxCell id="client_layer" value="客户端层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebc;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="1080" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- 客户端组件 -->
+        <mxCell id="mcp_client" value="MCP 客户端&#xa;(大模型/AI Agent)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="70" y="100" width="180" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="http_client" value="HTTP API 客户端&#xa;(Python/Java/Node.js)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="280" y="100" width="180" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="browser_client" value="浏览器/Jupyter&#xa;(Web 界面)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="490" y="100" width="180" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="curl_client" value="curl/wget&#xa;(命令行)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="700" y="100" width="180" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gradio_client" value="Gradio 管理界面&#xa;(端口 7070)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="910" y="100" width="180" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 连接箭头 -->
+        <mxCell id="arrow1" value="" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="540" y="180" as="sourcePoint" />
+            <mxPoint x="540" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Nginx 代理层 -->
+        <mxCell id="nginx_layer" value="Nginx 统一代理层 (端口 70)&#xa;/{container_id}/mcp  |  /{container_id}/upload  |  /{container_id}/download  |  /{container_id}/notebook" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="220" width="1080" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- 连接箭头 -->
+        <mxCell id="arrow2" value="" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="540" y="290" as="sourcePoint" />
+            <mxPoint x="540" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Docker 容器层 -->
+        <mxCell id="container_layer" value="Docker 容器层 (隔离环境)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="340" width="1080" height="400" as="geometry" />
+        </mxCell>
+
+        <!-- 容器 1 -->
+        <mxCell id="container1" value="MCP 容器 1 (ID: abc123...)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="70" y="370" width="300" height="350" as="geometry" />
+        </mxCell>
+
+        <!-- 容器 1 内部服务 -->
+        <mxCell id="streamable_http" value="Streamable HTTP&#xa;(JSON-RPC 2.0)&#xa;端口 7000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="90" y="400" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="flask_api" value="Flask RESTful API&#xa;端口 7000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="230" y="400" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="download_server" value="Download Server&#xa;端口 777" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebc;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="90" y="490" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jupyter" value="Jupyter Notebook&#xa;端口 7777" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="230" y="490" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- MCP 工具层 -->
+        <mxCell id="mcp_tools_box" value="MCP 工具层 (31个)&#xa;━━━━━━━━━━━━━━━━━━━━━&#xa;基础工具 (6)&#xa;• execute_code_tool&#xa;• install_package_tool&#xa;• health_check_tool&#xa;• execute_terminal_command_tool&#xa;• list_files_tool&#xa;• get_download_link_tool" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="90" y="590" width="260" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- 容器 2 -->
+        <mxCell id="container2" value="MCP 容器 2 (ID: def456...)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="400" y="370" width="300" height="350" as="geometry" />
+        </mxCell>
+
+        <!-- 容器 2 内部服务 -->
+        <mxCell id="streamable_http2" value="Streamable HTTP&#xa;端口 7000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="420" y="400" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="flask_api2" value="Flask RESTful API&#xa;端口 7000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="560" y="400" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="download_server2" value="Download Server&#xa;端口 777" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebc;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="420" y="490" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jupyter2" value="Jupyter Notebook&#xa;端口 7777" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="560" y="490" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mcp_tools_box2" value="MCP 工具层 (31个)&#xa;━━━━━━━━━━━━━━━━━━━━━&#xa;cbhpacks 专用工具 (25)&#xa;• 数据生成 (1)&#xa;• 分箱分析/WOE/IV/PSI (3)&#xa;• 特征选择 (3)&#xa;• 特征编码 (1)&#xa;• 模型训练 (2)&#xa;• 无监督学习 (2)&#xa;• 回归分析 (1)&#xa;• 描述统计 (2)&#xa;• 特征工程 (2)&#xa;• 数据库操作 (5)&#xa;• Linux 操作 (1)&#xa;• 文件传输 (2)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="420" y="590" width="260" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- 数据分析框架层 -->
+        <mxCell id="framework_layer" value="cbhpacks 数据分析算法框架&#xa;━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#xa;数据预处理 → 特征工程 → 模型训练 → 数据库连接 → 评估报告" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="70" y="720" width="630" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- 容器 N -->
+        <mxCell id="container_n" value="MCP 容器 N&#xa;...&#xa;弹性扩展" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="750" y="370" width="300" height="350" as="geometry" />
+        </mxCell>
+
+        <!-- 特性标签 -->
+        <mxCell id="feature1" value="资源隔离&#xa;CPU/内存/GPU 限制" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="780" y="400" width="140" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="feature2" value="自动超时&#xa;容器定时回收" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="780" y="470" width="140" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="feature3" value="多租户支持&#xa;容器独立 ID" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="780" y="540" width="140" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="feature4" value="文件传输&#xa;HTTP 上传/下载" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="780" y="610" width="140" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="feature5" value="预装依赖&#xa;torch/tf/sklearn等" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="780" y="680" width="140" height="50" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+  
+  <diagram id="data_flow" name="Data Flow">
+    <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 标题 -->
+        <mxCell id="title2" value="典型建模流程 &amp; 数据流向" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="760" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- 步骤 1 -->
+        <mxCell id="step1" value="1. 数据获取&#xa;━━━━━━━━━━━━━&#xa;• generate_random_data&#xa;• query_clickhouse&#xa;• query_mysql&#xa;• query_hive&#xa;• upload_file" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebc;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="80" y="100" width="200" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- 箭头 1-2 -->
+        <mxCell id="arrow_1_2" value="CSV/Excel" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="220" as="sourcePoint" />
+            <mxPoint x="180" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 步骤 2 -->
+        <mxCell id="step2" value="2. 数据探索&#xa;━━━━━━━━━━━━━&#xa;• descriptive_statistics&#xa;• single_column_analysis&#xa;• 数据质量检查&#xa;• 分布分析" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="80" y="280" width="200" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- 箭头 2-3 -->
+        <mxCell id="arrow_2_3" value="分析报告" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="400" as="sourcePoint" />
+            <mxPoint x="180" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 步骤 3 -->
+        <mxCell id="step3" value="3. 特征工程&#xa;━━━━━━━━━━━━━&#xa;• create_bins_report (分箱)&#xa;• transform_to_woe (WOE)&#xa;• feature_selection (选择)&#xa;• encode_features (编码)&#xa;• get_psi_report (PSI)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="80" y="460" width="200" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- 箭头 3-4 -->
+        <mxCell id="arrow_3_4" value="处理后的数据" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="530" as="sourcePoint" />
+            <mxPoint x="420" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 步骤 4 -->
+        <mxCell id="step4" value="4. 模型训练&#xa;━━━━━━━━━━━━━&#xa;• train_binary_model&#xa;  - LR / XGBoost / LightGBM&#xa;  - MLP / SVM / RandomForest&#xa;• pca_analysis (降维)&#xa;• kmeans_clustering (聚类)&#xa;• linear_regression (回归)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="420" y="460" width="220" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- 箭头 4-5 -->
+        <mxCell id="arrow_4_5" value="模型文件" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="530" y="400" as="sourcePoint" />
+            <mxPoint x="530" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 步骤 5 -->
+        <mxCell id="step5" value="5. 模型评估&#xa;━━━━━━━━━━━━━&#xa;• generate_model_report&#xa;• AUC/KS/LIFT 指标&#xa;• 混淆矩阵&#xa;• 评分分箱报告" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="420" y="220" width="220" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- 箭头 5-6 -->
+        <mxCell id="arrow_5_6" value="评估报告" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="530" y="220" as="sourcePoint" />
+            <mxPoint x="530" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 步骤 6 -->
+        <mxCell id="step6" value="6. 结果输出&#xa;━━━━━━━━━━━━━&#xa;• download_file (下载)&#xa;• save_to_hive (入库)&#xa;• execute_linux_command&#xa;• 报告文件 (Excel/PNG)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebc;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="420" y="80" width="220" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- 输出文件说明 -->
+        <mxCell id="output_files" value="输出文件类型&#xa;━━━━━━━━━━━━━━━━━━━━━━━&#xa;• Excel 报告: WOE/IV/PSI/模型评估&#xa;• 模型文件: .pkl/.h5&#xa;• 图表: KS/AUC/LIFT 曲线 (.png)&#xa;• 数据: CSV/JSON&#xa;• SQL: 建表语句" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="700" y="80" width="250" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- 工具选择指南 -->
+        <mxCell id="tool_guide" value="工具选择建议&#xa;━━━━━━━━━━━━━━━━━━━━━━━&#xa;1. 优先使用专用 cbhpacks 工具 (25个)&#xa;   → 参数优化，自动保存报告&#xa;&#xa;2. 定制化分析用 execute_code_tool&#xa;   → 直接调用 cbhpacks 模块&#xa;&#xa;3. 辅助工具: 文件/包管理/健康检查" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="700" y="280" width="250" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- 访问方式 -->
+        <mxCell id="access_methods" value="客户端访问方式&#xa;━━━━━━━━━━━━━━━━━━━━━━━&#xa;• MCP 协议: call_tool('工具名', {参数})&#xa;• HTTP API: POST /execute {code: ...}&#xa;• 文件上传: POST /upload (multipart)&#xa;• 文件下载: GET /download/{filepath}&#xa;• Jupyter: 浏览器交互开发" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="700" y="500" width="250" height="180" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
